@@ -8,7 +8,7 @@ import re
 import subprocess
 import sys
 
-def groff_txt(input, grotty_flags="-fc", encoding="utf8"):
+def groff_txt(input, grotty_flags="-fc", encoding="ascii"):
     p = subprocess.Popen(
         ['groff', '-T%s' % (encoding), '-t', '-ms', '-P', grotty_flags],
         stdin=subprocess.PIPE,
