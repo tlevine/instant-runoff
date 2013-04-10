@@ -45,16 +45,6 @@ def groffToQuoteHTMLUnquote(stdout):
 
 dir = os.path.expanduser('~/.cache/instant-runoff')
 
-def save(str, path):
-    with file(os.path.join(dir, path), 'w') as fh:
-        fh.write(str)
-
-def save_txt(str):
-    save(str, os.path.join(dir, 'out.txt'))
-
-def save_html(str):
-    save(str, os.path.join(dir, 'out.html'))
-
 def make_alt(txt, html):
     alt = email.mime.multipart.MIMEMultipart('alternative')
     alt.attach(email.mime.text.MIMEText(txt, 'plain'))
@@ -92,14 +82,13 @@ def main():
 
     input = mail.get_payload()
     txt = groff_txt(input)
-    save_txt(txt)
-    txt = groff_txt(input, grotty_flags="-f", encoding="ascii")
-    html = groffToQuoteHTMLUnquote(txt)
-    save_html(html)
+    htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
+    html = groffToQuoteHTMLUnquote(htxt)
 
     alt = email.mime.multipart.MIMEMultipart('alternative')
     alt.attach(email.mime.text.MIMEText(txt, 'plain'))
     alt.attach(email.mime.text.MIMEText(html, 'html'))
+    alt.attach(email.mime.text.MIMEText(input, 'x-groff-ms'))
     #mail.set_payload(alt)
     #mail.attach(alt)
     #print mail.as_string()
