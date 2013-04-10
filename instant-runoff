@@ -8,9 +8,9 @@ import re
 import subprocess
 import sys
 
-def groff_utf8(input):
+def groff_txt(input, grotty_flags="-fc", encoding="utf8"):
     p = subprocess.Popen(
-        ['groff', '-Tutf8', '-t', '-ms', '-P', '-f'],
+        ['groff', '-T%s' % (encoding), '-t', '-ms', '-P', grotty_flags],
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE)
@@ -83,8 +83,9 @@ def main():
     #tty.flush()
 
     input = mail.get_payload()
-    txt = groff_utf8(input)
+    txt = groff_txt(input)
     save_txt(txt)
+    txt = groff_txt(input, grotty_flags="-f", encoding="ascii")
     html = groffToQuoteHTMLUnquote(txt)
     save_html(html)
 
