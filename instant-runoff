@@ -33,7 +33,9 @@ def groffToQuoteHTMLUnquote(stdout):
     quoteHTMLunquote = "<pre>%s</pre>" % (stdout)
     typewriter = [
         (mk_escape_pattern('1m', '0m'), r'<b>\1</b>'),
-        (mk_escape_pattern('4m', '24m'), r'<i>\1</i>')]
+        (mk_escape_pattern('1m', '22m'), r'<b>\1</b>'),
+        (mk_escape_pattern('4m', '24m'), r'<i>\1</i>'),
+        (mk_escape_pattern('4m', '0m'), r'<i>\1</i>')]
 
     for (pattern, repl) in typewriter:
         quoteHTMLunquote = re.sub(
