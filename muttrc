@@ -1,1 +1,1 @@
-macro compose g <edit-encoding>^Uutf-8<enter><edit-type>^Utext/x-troff-ms<enter><pipe-entry>instant-runoff<enter><attach-file>~/.cache/instant-runoff/out.txt<enter><get-attachment><attach-file>~/.cache/instant-runoff/out.html<enter><get-attachment><attach-file>~/.cache/instant-runoff/out.alt<enter><get-attachment><edit-type>^Umultipart/alternative<enter>
+macro compose g '<pgp-menu>c<enter-command>set sendmail="instant-runoff"<enter><send-message><enter-command>set sendmail=/usr/lib/sendmail<enter>

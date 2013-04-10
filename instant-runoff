@@ -61,6 +61,14 @@ def make_alt(txt, html):
     alt.attach(email.mime.text.MIMEText(html, 'html'))
     return alt
 
+def sendmail(msg, args=[]):
+    p = subprocess.Popen(
+        ["/usr/lib/sendmail"] + args,
+        stdin=subprocess.PIPE)
+    (stdout, stderr) = p.communicate(msg)
+    if p.returncode != 0:
+        raise RuntimeError()
+
 def main():
     try:
         os.makedirs(dir)
@@ -100,7 +108,7 @@ def main():
         for fvalue in mail.get_all(fname):
             alt.add_header(fname, fvalue)
 
-    print alt.as_string()
+    sendmail(alt.as_string(), sys.argv[1:])
 
 if __name__ == '__main__':
     main()
