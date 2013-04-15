@@ -1,1 +1,2 @@
 macro compose g '<pgp-menu>c<enter-command>set sendmail="instant-runoff"<enter><send-message><enter-command>set sendmail=/usr/lib/sendmail<enter>
+macro compose <Esc>g '<pipe-entry>instant-runoff --preview<enter>

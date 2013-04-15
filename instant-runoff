@@ -59,7 +59,22 @@ def sendmail(msg, args=[]):
     if p.returncode != 0:
         raise RuntimeError()
 
+def preview():
+    input = sys.stdin.read()
+    txt = groff_txt(input)
+    # XXX: text formatting (bold/italic) not shown
+    print txt
+    # Handling input is not possible in a mutt sub-command
+    # 
+    # p = subprocess.Popen(["less", "-r"], stdin=subprocess.PIPE)
+    # p.stdin.write(txt)
+    # p.wait()
+
 def main():
+    if sys.argv[1] == "--preview":
+        preview()
+        return
+
     try:
         os.makedirs(dir)
     except OSError:
