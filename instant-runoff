@@ -42,7 +42,7 @@ def groffToQuoteHTMLUnquote(stdout):
 
     for (pattern, repl) in typewriter:
         quoteHTMLunquote = re.sub(
-            pattern, repl, quoteHTMLunquote, re.MULTILINE)
+            pattern, repl, quoteHTMLunquote)
 
     return quoteHTMLunquote
 
