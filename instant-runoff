@@ -62,20 +62,31 @@ def sendmail(msg, args=[]):
     if p.returncode != 0:
         raise RuntimeError()
 
+def reply():
+    input = sys.stdin.read()
+
 def preview():
     input = sys.stdin.read()
     txt = groff_txt(input)
     # XXX: text formatting (bold/italic) not shown
     print txt
-    # Handling input is not possible in a mutt sub-command
-    # 
+    # XXX: Handling input is not possible in a mutt sub-command
     # p = subprocess.Popen(["less", "-r"], stdin=subprocess.PIPE)
     # p.stdin.write(txt)
     # p.wait()
 
+def preview_html():
+    input = sys.stdin.read()
+    htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
+    out = groffToQuoteHTMLUnquote(htxt)
+    print out
+
 def main():
     if sys.argv[1] == "--preview":
         preview()
+        return
+    elif sys.argv[1] == "--html":
+        preview_html()
         return
 
     try:
