@@ -9,6 +9,9 @@ Press
 in mutt to send a multi-part html/txt/groff message;
 .B ESC+g
 can be used to preview a message's groff output.
+.B ESC+r
+will replace the message with txt+groff and allow normal sending.
+This may be useful for encrypted groff-mails.
 .PP
 instant-runoff is set up to use the
 .B ms

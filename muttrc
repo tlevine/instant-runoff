@@ -1,2 +1,3 @@
 macro compose g '<pgp-menu>c<enter-command>set sendmail="instant-runoff"<enter><send-message><enter-command>set sendmail=/usr/lib/sendmail<enter>
 macro compose <Esc>g '<pipe-entry>instant-runoff --preview<enter>
+macro compose <Esc>r '<pipe-entry>instant-runoff --save<enter><attach-file>/tmp/runoff.txt<enter><attach-file>/tmp/runoff.groff<enter><edit-type>^A^Ktext/x-groff-ms<enter><previous-entry><previous-entry><detach-file>

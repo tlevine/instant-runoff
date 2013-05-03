@@ -81,12 +81,21 @@ def preview_html():
     out = groffToQuoteHTMLUnquote(htxt)
     print out
 
+def save(txtout="/tmp/runoff.txt", groffout="/tmp/runoff.groff"):
+    input = sys.stdin.read()
+    txt = groff_txt(input)
+    open(txtout, "w").write(txt)
+    open(groffout, "w").write(input)
+
 def main():
     if sys.argv[1] == "--preview":
         preview()
         return
     elif sys.argv[1] == "--html":
         preview_html()
+        return
+    elif sys.argv[1] == "--save":
+        save()
         return
 
     try:
