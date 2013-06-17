@@ -53,8 +53,6 @@ def _groffToQuoteHTMLUnquote(stdout):
 
     return quoteHTMLunquote
 
-dir = os.path.expanduser('~/.cache/instant-runoff')
-
 def sendmail(msg, args=[]):
     p = subprocess.Popen(
         ["/usr/lib/sendmail"] + args,
@@ -101,6 +99,7 @@ def compose(body):
 
 USAGE = '%s [--help|--preview] sendmail-args' % sys.argv[0]
 def main():
+    dir = os.path.expanduser('~/.cache/instant-runoff')
     if len(sys.argv) == 1:
         print USAGE
         exit(1)
