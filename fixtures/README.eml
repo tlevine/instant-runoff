@@ -1,0 +1,96 @@
+Content-Type: multipart/alternative;
+ boundary="===============7553505589121438805=="
+MIME-Version: 1.0
+
+--===============7553505589121438805==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+
+
+
+
+
+                  write e-mails in groff.
+
+
+11..  UUssaaggee
+
+Press gg in mutt to send a multi-part html/txt/groff message;
+EESSCC++gg can be used to preview a message's groff output.
+
+     instant-runoff is set up to use the mmss  macro  package,
+and preprocess input with ttbbll.
+
+22..  SSeettuupp
+
+Source macros to your .muttrc
+
+     source '~/src/instant-runoff/muttrc'
+
+and make sure "instant-runoff" is in PATH.
+
+--===============7553505589121438805==
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<pre>
+
+
+
+
+
+                  write e-mails in groff.
+
+
+<b>1.  Usage</b>
+
+Press <b>g </b>in mutt to send a multi-part html/txt/groff message;
+<b>ESC+g </b>can be used to preview a message's groff output.
+
+     instant-runoff is set up to use the <b>ms  </b>macro  package,
+and preprocess input with <b>tbl</b>.
+
+<b>2.  Setup</b>
+
+Source macros to your .muttrc
+
+     source '~/src/instant-runoff/muttrc'
+
+and make sure "instant-runoff" is in PATH.
+</pre>
+--===============7553505589121438805==
+Content-Type: text/x-groff-ms; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+.CD
+write e-mails in groff.
+.DE
+.NH 1
+Usage
+.LP
+Press 
+.B g
+in mutt to send a multi-part html/txt/groff message;
+.B ESC+g
+can be used to preview a message's groff output.
+.PP
+instant-runoff is set up to use the
+.B ms
+macro package,
+and preprocess input with 
+.B tbl .
+.NH 1
+Setup
+.LP
+Source macros to your .muttrc
+.QP
+source '~/src/instant-runoff/muttrc'
+.LP
+and make sure "instant-runoff" is in PATH.
+
+--===============7553505589121438805==--

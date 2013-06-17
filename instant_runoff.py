@@ -83,6 +83,28 @@ def preview_html():
     input = sys.stdin.read()
     print groff_html(input)
 
+
+def compose(body):
+    mail = email.message_from_string(body)
+    input = mail.get_payload()
+    txt = groff_txt(input)
+    htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
+    html = groffToQuoteHTMLUnquote(htxt)
+
+    alt = email.mime.multipart.MIMEMultipart('alternative')
+    alt.attach(email.mime.text.MIMEText(txt, 'plain'))
+    alt.attach(email.mime.text.MIMEText(html, 'html'))
+    alt.attach(email.mime.text.MIMEText(input, 'x-groff-ms'))
+    #mail.set_payload(alt)
+    #mail.attach(alt)
+    #print mail.as_string()
+
+    for fname in mail.keys():
+        for fvalue in mail.get_all(fname):
+            alt.add_header(fname, fvalue)
+
+    return alt
+
 USAGE = '%s [--help|--preview] sendmail-args' % sys.argv[0]
 def main():
     if len(sys.argv) == 1:
@@ -137,6 +159,6 @@ def main():
 
     sendmail(alt.as_string(), sys.argv[1:])
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()
 
