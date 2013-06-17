@@ -75,11 +75,14 @@ def preview():
     # p.stdin.write(txt)
     # p.wait()
 
-def preview_html():
-    input = sys.stdin.read()
+def groff_html(input):
     htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
     out = groffToQuoteHTMLUnquote(htxt)
-    print out
+    return out
+
+def preview_html():
+    input = sys.stdin.read()
+    print groff_html(input)
 
 USAGE = '%s [--help|--preview] sendmail-args' % sys.argv[0]
 def main():
