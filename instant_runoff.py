@@ -10,6 +10,7 @@ import subprocess
 import sys
 
 def groff_txt(input, grotty_flags="-fc", encoding="ascii"):
+    'Convert Groff into plain text'
     p = subprocess.Popen(
         ['groff', '-T%s' % (encoding), '-t', '-ms', '-P', grotty_flags],
         stdin=subprocess.PIPE,
@@ -24,6 +25,12 @@ def groff_txt(input, grotty_flags="-fc", encoding="ascii"):
         raise RuntimeError(repr(stderr))
 
     return stdout
+
+def groff_html(input):
+    'Convert Groff into HTML'
+    htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
+    out = groffToQuoteHTMLUnquote(htxt)
+    return out
 
 def mk_escape_pattern(start, end):
     return r'\x1b\[%s([^\x1b]+)\x1b\[%s' % (start, end)
@@ -74,11 +81,6 @@ def preview():
     # p = subprocess.Popen(["less", "-r"], stdin=subprocess.PIPE)
     # p.stdin.write(txt)
     # p.wait()
-
-def groff_html(input):
-    htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
-    out = groffToQuoteHTMLUnquote(htxt)
-    return out
 
 def preview_html():
     input = sys.stdin.read()
