@@ -69,9 +69,6 @@ def sendmail(msg, args=[]):
     if p.returncode != 0:
         raise RuntimeError()
 
-def reply():
-    input = sys.stdin.read()
-
 def preview():
     input = sys.stdin.read()
     txt = groff_txt(input)
