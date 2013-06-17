@@ -55,12 +55,6 @@ def _groffToQuoteHTMLUnquote(stdout):
 
 dir = os.path.expanduser('~/.cache/instant-runoff')
 
-def make_alt(txt, html):
-    alt = email.mime.multipart.MIMEMultipart('alternative')
-    alt.attach(email.mime.text.MIMEText(txt, 'plain'))
-    alt.attach(email.mime.text.MIMEText(html, 'html'))
-    return alt
-
 def sendmail(msg, args=[]):
     p = subprocess.Popen(
         ["/usr/lib/sendmail"] + args,
