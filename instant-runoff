@@ -81,8 +81,15 @@ def preview_html():
     out = groffToQuoteHTMLUnquote(htxt)
     print out
 
+USAGE = '%s [--help|--preview] sendmail-args' % sys.argv[0]
 def main():
-    if sys.argv[1] == "--preview":
+    if len(sys.argv) == 1:
+        print USAGE
+        exit(1)
+    elif sys.argv[1] == '--help':
+        print USAGE
+        exit(0)
+    elif sys.argv[1] == "--preview":
         preview()
         return
     elif sys.argv[1] == "--html":
