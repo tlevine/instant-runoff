@@ -29,23 +29,23 @@ def groff_txt(input, grotty_flags="-fc", encoding="ascii"):
 def groff_html(input):
     'Convert Groff into HTML'
     htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
-    out = groffToQuoteHTMLUnquote(htxt)
+    out = _groffToQuoteHTMLUnquote(htxt)
     return out
 
-def mk_escape_pattern(start, end):
+def _mk_escape_pattern(start, end):
     return r'\x1b\[%s([^\x1b]+)\x1b\[%s' % (start, end)
 
-def groffToQuoteHTMLUnquote(stdout):
+def _groffToQuoteHTMLUnquote(stdout):
     """Postprocess groff text output to "HTML"."""
 
     stdout = cgi.escape(stdout)
 
     quoteHTMLunquote = "<pre>%s</pre>" % (stdout)
     typewriter = [
-        (mk_escape_pattern('1m', '0m'), r'<b>\1</b>'),
-        (mk_escape_pattern('1m', '22m'), r'<b>\1</b>'),
-        (mk_escape_pattern('4m', '24m'), r'<i>\1</i>'),
-        (mk_escape_pattern('4m', '0m'), r'<i>\1</i>')]
+        (_mk_escape_pattern('1m', '0m'), r'<b>\1</b>'),
+        (_mk_escape_pattern('1m', '22m'), r'<b>\1</b>'),
+        (_mk_escape_pattern('4m', '24m'), r'<i>\1</i>'),
+        (_mk_escape_pattern('4m', '0m'), r'<i>\1</i>')]
 
     for (pattern, repl) in typewriter:
         quoteHTMLunquote = re.sub(
@@ -89,7 +89,7 @@ def compose(body):
     input = mail.get_payload()
     txt = groff_txt(input)
     htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
-    html = groffToQuoteHTMLUnquote(htxt)
+    html = _groffToQuoteHTMLUnquote(htxt)
 
     alt = email.mime.multipart.MIMEMultipart('alternative')
     alt.attach(email.mime.text.MIMEText(txt, 'plain'))
@@ -143,7 +143,7 @@ def main():
     input = mail.get_payload()
     txt = groff_txt(input)
     htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
-    html = groffToQuoteHTMLUnquote(htxt)
+    html = _groffToQuoteHTMLUnquote(htxt)
 
     alt = email.mime.multipart.MIMEMultipart('alternative')
     alt.attach(email.mime.text.MIMEText(txt, 'plain'))
