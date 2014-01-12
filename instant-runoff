@@ -118,7 +118,8 @@ def main():
     #print >>tty, c
     #tty.flush()
 
-    input = mail.get_payload()
+    input = mail.get_payload(decode=True)
+
     txt = groff_txt(input)
     htxt = groff_txt(input, grotty_flags="-f", encoding="ascii")
     html = groffToQuoteHTMLUnquote(htxt)
