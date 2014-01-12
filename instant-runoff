@@ -23,7 +23,7 @@ def groff_txt(input, grotty_flags="-fc", encoding="ascii"):
     if stderr:
         raise RuntimeError(repr(stderr))
 
-    return stdout
+    return stdout.lstrip('\n')
 
 def mk_escape_pattern(start, end):
     return r'\x1b\[%s([^\x1b]+)\x1b\[%s' % (start, end)
