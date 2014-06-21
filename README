@@ -1,0 +1,23 @@
+write e-mails in groff.
+
+
+Setup
+=====
+Install.
+
+    pip2 install instant-runoff
+
+Then add these macros to your muttrc.
+
+.. literalinclude:: muttrc
+
+Usage
+=====
+
+Press **g** in mutt to send a multi-part html/txt/groff message;
+**ESC+g** can be used to preview a message's groff output.
+**ESC+r** will replace the message with txt+groff and allow nor-
+mal sending. This may be useful for encrypted groff-mails.
+
+instant-runoff is set up to use the **ms** macro package,
+and preprocess input with **tbl**.
